@@ -1,0 +1,88 @@
+<<<<<<< HEAD
+Register and Manage Account:
+
+Common for all users: 
+Register Account
+Log In
+Create Account
+Update Account
+Delete Account
+
+Trekker
+Use Cases:
+Browse Upcoming Trekking Events:
+View List of Trekking Clubs
+ -View Club Details
+Submit Event Review
+ -Rate Trekking Experience
+ -Write Comments
+ -Rate Overall Trek Experience
+Make Payment
+Filter Events(optional)
+
+Trekking Club
+Publish Upcoming Events:
+ -Add New Event
+ -Edit Event Details
+ -Delete Event
+ -Publish Event Facilities:
+Receive and Respond to Emails
+Pay-Back System for Cancellation(optional)
+
+Admin Functions
+Admin
+Use Cases:
+Manage Accounts
+Monitor Transactions
+Authentication of Trekkers and Trekking Clubs
+Authorize Users (Trekkers and Trekking Clubs)
+Grant Authorization
+Revoke Authorization
+View All Transactions
+
+=======
+Register and Manage Account:
+
+Common: 
+Register Account
+Log In
+Create Account
+Update Account
+Delete Account
+
+Actors: Trekker
+Use Cases:
+Browse Upcoming Trekking Events:
+View List of Trekking Clubs
+ -View Club Details
+Submit Event Review
+ -Rate Trekking Experience
+ -Write Comments
+ -Rate Overall Trek Experience
+Make Payment(optional)
+Filter Events(optional)
+
+Actors: Trekking Club
+Publish Upcoming Events:
+ -Add New Event
+ -Edit Event Details
+ -Delete Event
+ -Publish Event Facilities:
+Receive and Respond to Emails
+Pay-Back System for Cancellation(optional)
+
+Admin Functions
+Actors: Admin
+Use Cases:
+Manage User Accounts
+Manage Trekking Clubs
+View System Logs
+Monitor Transactions
+Authentication of Trekkers and Trekking Clubs
+Authorize Users (Trekkers and Trekking Clubs)
+Grant Authorization
+Revoke Authorization
+Reset Passwords
+View All Transactions:
+
+>>>>>>> 7f071a0eb672649bfa9753051b08d72c8d703d17
