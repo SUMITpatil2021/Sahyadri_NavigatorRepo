@@ -243,7 +243,63 @@ export default function ClubRegistration() {
       </div>
     </div>
   </div>
+  <div className="row mb-3 form-group mt-3">
+    <div className="col mb-3 ">
+      <label htmlFor="PhoneNo">Enter LicenseNo.:</label>
+      <input
+        type="tel"
+        name="LicenseNo"
+        id="LicenseNo"
+        placeholder="eg.1111"
+        className="form-control "
+        value={user.LicenseNo.value}
+        onChange={(e) => {
+          handleChange("LicenseNo", e.target.value);
+        }}
+        onBlur={(e) => {
+          handleChange("LicenseNo", e.target.value);
+        }}
+      />
+      <div
+        style={{
+          display: user.LicenseNo.touched && !user.LicenseNo.valid ? "block" : "none",
+          fontWeight: 'bold', 
+          color: 'red',
+        }}
+      >
+        {user.LicenseNo.error}
+      </div>
+      </div>
+    </div>
 
+    <div className="row mb-3 form-group mt-3">
+    <div className="col mb-3 ">
+      <label htmlFor="PhoneNo">Enter Establishment Date:</label>
+      <input
+        type="Date"
+        name="EDate"
+        id="EDate"
+        placeholder="eg.2-8-1997"
+        className="form-control "
+        value={user.EDate.value}
+        onChange={(e) => {
+          handleChange("EDate", e.target.value);
+        }}
+        onBlur={(e) => {
+          handleChange("EDate", e.target.value);
+        }}
+      />
+      <div
+        style={{
+          display: user.EDate.touched && !user.EDate.valid ? "block" : "none",
+          fontWeight: 'bold', 
+          color: 'red',
+        }}
+      >
+        {user.EDate.error}
+      </div>
+    </div>
+    </div>
   <div className="row mb-3 form-group mt-3">
     <div className="col mb-3">
       <label htmlFor="Email">Enter Email:</label>
@@ -301,63 +357,7 @@ export default function ClubRegistration() {
     </div>
     </div>
 
-    <div className="row mb-3 form-group mt-3">
-    <div className="col mb-3 ">
-      <label htmlFor="PhoneNo">Enter LicenseNo.:</label>
-      <input
-        type="tel"
-        name="LicenseNo"
-        id="LicenseNo"
-        placeholder="eg.1111"
-        className="form-control "
-        value={user.LicenseNo.value}
-        onChange={(e) => {
-          handleChange("LicenseNo", e.target.value);
-        }}
-        onBlur={(e) => {
-          handleChange("LicenseNo", e.target.value);
-        }}
-      />
-      <div
-        style={{
-          display: user.LicenseNo.touched && !user.LicenseNo.valid ? "block" : "none",
-          fontWeight: 'bold', 
-          color: 'red',
-        }}
-      >
-        {user.LicenseNo.error}
-      </div>
-      </div>
-    </div>
-
-    <div className="row mb-3 form-group mt-3">
-    <div className="col mb-3 ">
-      <label htmlFor="PhoneNo">Enter Establishment Date:</label>
-      <input
-        type="Date"
-        name="EDate"
-        id="EDate"
-        placeholder="eg.2-8-1997"
-        className="form-control "
-        value={user.EDate.value}
-        onChange={(e) => {
-          handleChange("EDate", e.target.value);
-        }}
-        onBlur={(e) => {
-          handleChange("EDate", e.target.value);
-        }}
-      />
-      <div
-        style={{
-          display: user.EDate.touched && !user.EDate.valid ? "block" : "none",
-          fontWeight: 'bold', 
-          color: 'red',
-        }}
-      >
-        {user.EDate.error}
-      </div>
-    </div>
-    </div>
+ 
 
     <div className="col mb-3">
       <label htmlFor="Username">Enter Username:</label>
