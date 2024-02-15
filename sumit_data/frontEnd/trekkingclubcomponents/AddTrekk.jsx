@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from 'react';
-import {  useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import './style.css';
 
@@ -19,18 +19,29 @@ export default function AddTrekk() {
   }
 
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [selectedCity, setSelectedCity] = useState({ id: 0, name: "Select User" });
+
 
   const [trekData, setTrekData] = useState({
-    trekName: '',
+    trekkName: '',
     trekkingPoint: '',
     landmark: '',
-    pincode: '',
     date: '',
-    offer: '',
     charges: '',
     guideName: '',
   });
+ 
+  const city = [
+    { id: 0, name: "Select City" },
+    { id: 1, name: "Pune" },
+    { id: 2, name: "Nashik" },
+    { id: 3, name: "Kolhapur" },
+  ];
 
+  const handleCityChange = (e) => {
+    const city = city.find((type) => type.id === parseInt(e.target.value));
+    setSelectedCity(city);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -77,11 +88,23 @@ export default function AddTrekk() {
           <form onSubmit={handleSubmit} className='row'>
             <div className="col-md-6 ">
               <label>
-                Trek Name:
-                <input type="text" value={trekData.trekName} className="form-control"
-                  onChange={(e) => setTrekData({ ...trekData, trekName: e.target.value })} />
+                Trekk Name:
+                <input type="text" value={trekData.trekkName} className="form-control"
+                  onChange={(e) => setTrekData({ ...trekData, trekkName: e.target.value })} />
               </label>
-            </div>
+            </div> 
+
+            <div className="col mb-3 ">
+              Select city:
+              <select value={setSelectedCity.id} onChange={(e) => handleCityChange(e)}>
+                {city.map((type) => (
+                  <option key={type.id} value={type.id}>
+                    {type.name}
+                  </option>
+                ))}
+              </select>
+            </div> 
+
             <div className="col-md-6 ">
               <label>
                 Trekking Point:
@@ -96,14 +119,7 @@ export default function AddTrekk() {
                   value={trekData.landmark} onChange={(e) => setTrekData({ ...trekData, landmark: e.target.value })} />
               </label>
             </div>
-            <div className="col-md-6 ">
-              <label>
-                Pincode:
-                <input type="text" className="form-control"
-                  value={trekData.pincode} onChange={(e) => setTrekData({ ...trekData, pincode: e.target.value })} />
-              </label>
-
-            </div>
+           
 
             <div className="col-md-6">
               <label>
@@ -112,13 +128,7 @@ export default function AddTrekk() {
                   value={trekData.date} onChange={(e) => setTrekData({ ...trekData, date: e.target.value })} />
               </label>
             </div>
-            <div className="col-md-6 ">
-              <label>
-                Offer:
-                <input type="text" className="form-control"
-                  value={trekData.offer} onChange={(e) => setTrekData({ ...trekData, offer: e.target.value })} />
-              </label>
-            </div>
+           
             <div className="col-md-6">
               <label>
                 Charges:
@@ -134,30 +144,56 @@ export default function AddTrekk() {
               </label>
             </div>
             <br />
-            <div className="col-md-6 ">
+            <div className="col-md-6 mt-3 ">
               <label >
-                <button type="button" className="btn btn-primary" onClick={navigateToAddImage} >Add Image</button>
+                <button type="button" className="btn btn-primary margin-7" onClick={navigateToAddImage} >Add Image</button>
               </label>
             </div>
 
-            <div className="col md-12 text-right">
-              <label>
-                <input type="submit"
-                  value="Submit "
-                  className="btn btn-success  mt-3 me-3" />
+          <p className="checkbox-label "> Facilities</p>
+              <div className='col-md-3 '>
+                <label for="trekkingPole" className="checkbox-label">
+                  <input type="checkbox" id="trekkingPole" name="equipment" /> Trekking Pole
+                </label>
+                <label for="trainingProgram" className="checkbox-label">
+                  <input type="checkbox" id="trainingProgram" name="equipment" /> Training Program
+                </label>
+                <label for="firstAid" className="checkbox-label">
+                  <input type="checkbox" id="firstAid" name="equipment" /> First Aid
+                </label>
+              </div>
+              <div className='col-md-3 '>
+              <label for="transportation" className="checkbox-label" >
+                <input type="checkbox" id="transportation" name="equipment" /> Transportation
               </label>
-              <label>
-                <input type="button" value="clear" className="btn btn-danger mt-3 me-3 "
-                  onClick={() => { dispatch({ type: 'reset' }) }} />
+              <label for="food" className="checkbox-label">
+                <input type="checkbox" id="food" name="equipment" /> Food
               </label>
+             
             </div>
+         
+       
 
-          </form>
+
+        <div className="col md-12 mt-3 text-right">
+          <label>
+            <input type="submit"
+              value="Submit "
+              className="btn btn-success  mt-3 me-3" />
+          </label>
+          <label>
+            <input type="button" value="clear" className="btn btn-danger mt-3 me-3 "
+              onClick={() => { dispatch({ type: 'reset' }) }} />
+          </label>
         </div>
-      </div>
+
+      </form>
+    </div >
+      </div >
 
     </>
   )
-  
+
+
 
 }
