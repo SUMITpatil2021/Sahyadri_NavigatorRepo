@@ -1,19 +1,15 @@
 import React, { useReducer, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import validator from 'validator'
-import './style.css';
 
-export default function ClubRegistration() {
+export default function UserRegistration() {
   const Navigate = useNavigate();
 
   const init = {
     Name: { value: "", valid: false, touched: false, error: "" },
-    OwnerName: { value: "", valid: false, touched: false, error: "" },
     Email: { value: "", valid: false, touched: false, error: "" },
     PhoneNo: { value: "", valid: false, touched: false, error: "" },
-    LicenseNo: { value: "", valid: false, touched: false, error: "" },
-    EDate: { value: "", valid: false, touched: false, error: "" },
-    Username: { value: "", valid: false, touched: false, error: "" },
+    Username: { value: "",  valid: false, touched: false, error: "" },
     Password: { value: "", valid: false, touched: false, error: "" },
     formValid: false,
   };
@@ -52,17 +48,6 @@ export default function ClubRegistration() {
         }
         break;
 
-        case "OwnerName":
-        var pattern1 = /^[\w]+$/;
-        if (pattern1.test(val)) {
-          valid = true;
-          error = "";
-        } else {
-          valid = false;
-          error = "Enter valid Name";
-        }
-        break;
-
       case "Email":
         var pattern4 = /^[\w]{2,20}@[\w-]{5,15}\.[a-z]{2,3}$/;
         if (pattern4.test(val)) {
@@ -85,16 +70,6 @@ export default function ClubRegistration() {
           }
           break;
   
-          case "LicenseNo":
-          var pattern2 = /^[0-9]{4}$/;
-          if (pattern2.test(val)) {
-            valid = true;
-            error = "";
-          } else {
-            valid = false;
-            error = "Please enter valid number";
-          }
-          break;
 
         case "Password":
           if(validator.isStrongPassword(val, { 
@@ -132,6 +107,8 @@ export default function ClubRegistration() {
     const { valid, error } = validateData(name, value);
     let formvalid = true;
 
+
+
     for (const key in user) {
       if (user[key].valid === false) {
         formvalid = false;
@@ -151,49 +128,47 @@ export default function ClubRegistration() {
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
         name: user.Name.value,
-        ownername: user.OwnerName.value,
         emailid: user.Email.value,
         contact: user.PhoneNo.value,
-        licenseno: user.LicenseNo.value,
-        date: user.EDate.value,
         username: user.Username.value,
         password: user.Password.value,
-        roleid: 3,
+        roleid: 2,
+        status : 1
       }),
     };
 
     console.log(reqOptions);
 
-    fetch("http://localhost:8080/clubregister", reqOptions)
+    fetch("http://localhost:8080/register", reqOptions)
       .then((resp) => resp.text())
       .then((data) => {
         setRespo(data);
-        if (data === "Club Registered") {
-          Navigate("/");
+        if (data === "User Registered") {
+          Navigate("/UserLogin");
         }
         else if(data === "Already used"){
           setMessage("Username already used")
         }
-      })
-      .catch((error) => console.error("Error:", error));
+      }).catch((error) =>{
+        Navigate("/serverError");
+      });
   };
-
   return (
     <>
    
-    <div className="club_signup  template d-flex justify-content-center align-items-center vh-220 bg-secondary ">
+    <div className=" signup  template d-flex justify-content-center align-items-center vh-100 bg-info ">
       <div className="form_container p-5 rounded bg-white">
       <h3 className="text-center">Sign up </h3>
-  <form className="border ">
+<form className="border ">
 
   <div className="row mb-3 form-group mt-3">
     <div className="col mb-3 ">
-      <label htmlFor="Name">Enter Club Name:</label>
+      <label htmlFor="Name">Enter Name:</label>
       <input
         type="text"
         name="Name"
         id="Name"
-        placeholder="eg. Gaganbhedi"
+        placeholder="eg. Supriya sutar"
         className="form-control "
         value={user.Name.value}
         onChange={(e) => {
@@ -216,94 +191,10 @@ export default function ClubRegistration() {
   </div>
 
   <div className="row mb-3 form-group mt-3">
-    <div className="col mb-3 ">
-      <label htmlFor="Name">Enter Owner Name:</label>
-      <input
-        type="text"
-        name="OwnerName"
-        id="OwnerName"
-        placeholder="eg. Supriya"
-        className="form-control "
-        value={user.OwnerName.value}
-        onChange={(e) => {
-          handleChange("OwnerName", e.target.value);
-        }}
-        onBlur={(e) => {
-          handleChange("OwnerName", e.target.value);
-        }}
-      />
-      <div
-        style={{
-          display: user.OwnerName.touched && !user.OwnerName.valid ? "block" : "none",
-          fontWeight: 'bold', 
-          color: 'red',
-        }}
-      >
-        {user.OwnerName.error}
-      </div>
-    </div>
-  </div>
-  <div className="row mb-3 form-group mt-3">
-    <div className="col mb-3 ">
-      <label htmlFor="PhoneNo">Enter LicenseNo.:</label>
-      <input
-        type="tel"
-        name="LicenseNo"
-        id="LicenseNo"
-        placeholder="eg.1111"
-        className="form-control "
-        value={user.LicenseNo.value}
-        onChange={(e) => {
-          handleChange("LicenseNo", e.target.value);
-        }}
-        onBlur={(e) => {
-          handleChange("LicenseNo", e.target.value);
-        }}
-      />
-      <div
-        style={{
-          display: user.LicenseNo.touched && !user.LicenseNo.valid ? "block" : "none",
-          fontWeight: 'bold', 
-          color: 'red',
-        }}
-      >
-        {user.LicenseNo.error}
-      </div>
-      </div>
-    </div>
-
-    <div className="row mb-3 form-group mt-3">
-    <div className="col mb-3 ">
-      <label htmlFor="PhoneNo">Enter Establishment Date:</label>
-      <input
-        type="Date"
-        name="EDate"
-        id="EDate"
-        placeholder="eg.2-8-1997"
-        className="form-control "
-        value={user.EDate.value}
-        onChange={(e) => {
-          handleChange("EDate", e.target.value);
-        }}
-        onBlur={(e) => {
-          handleChange("EDate", e.target.value);
-        }}
-      />
-      <div
-        style={{
-          display: user.EDate.touched && !user.EDate.valid ? "block" : "none",
-          fontWeight: 'bold', 
-          color: 'red',
-        }}
-      >
-        {user.EDate.error}
-      </div>
-    </div>
-    </div>
-  <div className="row mb-3 form-group mt-3">
     <div className="col mb-3">
       <label htmlFor="Email">Enter Email:</label>
-      <input type="email"
+      <input
+        type="email"
         name="Email"
         id="Email"
         placeholder="eg. abc@gmail.com"
@@ -355,10 +246,6 @@ export default function ClubRegistration() {
         {user.PhoneNo.error}
       </div>
     </div>
-    </div>
-
- 
-
     <div className="col mb-3">
       <label htmlFor="Username">Enter Username:</label>
       <pre> 
@@ -384,7 +271,6 @@ export default function ClubRegistration() {
                     }}>{errorMsg}</span>} 
             </pre>
     </div>
-
     <div className="col mb-3 ">
       <label htmlFor="Password">Enter Password:</label>
       <pre> 
@@ -410,19 +296,24 @@ export default function ClubRegistration() {
                     }}>{errorMessage}</span>} 
             </pre> 
     </div>
-
+    </div>
         <div className="row mb-3 form-group mt-1">
           <div className="col mb-3">
             <input type="button" value="Submit" className="btn btn-success mt-3 me-3 "
               onClick={(e) => { submitData(e) }} />
-
           </div>
+
+          <div className="col mb-3">
+          <input type="button" value="Cancel" className="btn btn-danger mt-3 me-3 "
+              onClick={() => { Navigate('/') }} />
+              </div>
+
           <div className="col md-12 text-right">
             <input type="button" value="clear" className="btn btn-danger mt-3 me-3 "
               onClick={() => { dispatch({ type: 'reset' }) }} />
           </div>
           <p className=" mt-2"> 
-            Already Registred <Link to="/UserLogin"> Sign in  </Link> ?  
+            Already Registred  User <Link to="/UserLogin"> Sign in  </Link> ?  
           </p>
         </div>
       </form>

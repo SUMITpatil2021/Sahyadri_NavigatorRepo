@@ -1,12 +1,10 @@
-
-
 import React from 'react'; 
 import 'bootstrap/dist/css/bootstrap.css'; 
 import Form from 'react-bootstrap/Form'; 
 import Button from 'react-bootstrap/Button'; 
 
-export default function EditTrekker() {
-    return (
+export default function EditTrekkingClub(){
+    return(
         <div >
            
             <div style={{
@@ -14,12 +12,12 @@ export default function EditTrekker() {
                 width: 700,
                 padding: 30
             }}>
-                <h4>Edit Deatils of Trekker</h4>
-                <Form >
+                <h4>Edit Deatils of Trekking club </h4>
+                <Form>
                     <Form.Group>
                         <Form.Label>Name</Form.Label>
                         <Form.Control type="text"
-                            placeholder="Enter your full name" />
+                            placeholder="Enter  trekking club name " />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>email address:</Form.Label>
@@ -37,4 +35,4 @@ export default function EditTrekker() {
             </div>
         </div>
     )
-} 
+}
