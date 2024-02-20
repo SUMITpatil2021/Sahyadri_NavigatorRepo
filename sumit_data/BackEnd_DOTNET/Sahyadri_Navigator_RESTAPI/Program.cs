@@ -31,7 +31,12 @@ namespace Sahyadri_Navigator_RESTAPI
 
 
 			app.MapControllers();
-			app.UseCors();
+			app.UseCors(builder =>
+			{
+				builder.WithOrigins("http://localhost:3000") // Update with your React.js frontend URL
+					   .AllowAnyMethod()
+					   .AllowAnyHeader();
+			});
 
 
 			app.Run();

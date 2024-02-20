@@ -6,7 +6,7 @@ namespace Sahyadri_Navigator_RESTAPI.Controllers
 {
 	[Route("api/[controller]/[action]")]
 	[ApiController]
-	//[EnableCors]
+	[EnableCors]
 	public class BookedtrekkController : Controller
 	{
 		[HttpGet]

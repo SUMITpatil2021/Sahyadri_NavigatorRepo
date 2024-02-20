@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Sahyadri_Navigator_RESTAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bd3884577864ee395800a49c5836e4055d20601f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3bd65316ed1864e6e16b38b90fd66a270eb1179e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Sahyadri_Navigator_RESTAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Sahyadri_Navigator_RESTAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
