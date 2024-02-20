@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Sahyadri_Navigator.props" />
+</Project>

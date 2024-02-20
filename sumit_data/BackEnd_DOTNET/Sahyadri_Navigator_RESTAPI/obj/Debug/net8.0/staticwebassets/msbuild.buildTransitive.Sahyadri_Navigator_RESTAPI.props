@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Sahyadri_Navigator_RESTAPI.props" />
+</Project>
