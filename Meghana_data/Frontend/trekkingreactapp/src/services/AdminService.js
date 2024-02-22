@@ -10,8 +10,8 @@ class AdminService{
         return axios.delete(baseUrl+"deleteuser?uid="+userid)
     }
 
-    deleteClub(userid){
-        return axios.delete(baseUrl+"deleteclub?clubid="+userid)
+    deleteClub(clubid){
+        return axios.delete(baseUrl+"deleteclub?clubid="+clubid)
     }
 
     getAllClubs(){

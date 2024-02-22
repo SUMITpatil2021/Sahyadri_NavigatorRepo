@@ -30,8 +30,8 @@ export default function MyTrekk() {
     //     .catch(()=>{})
 
     //    }
-    const formatDate = () => {
-        const date = new Date(plist.date);
+    const formatDate = (stringdate) => {
+        const date = new Date(stringdate);
         return date.toLocaleDateString(); // You can customize the date format as needed
     };
     return (
@@ -63,7 +63,7 @@ export default function MyTrekk() {
                             <Link to={`/EditTrekker/${ob.userid}`} state={{ tdata: ob }}>
                                 <button type="button" name="btn" id="EditTrekker" className="btn btn-primary">Download</button>
 
-                            </Link>F
+                            </Link>
 
                             {/* <Link to="payment">
                             <button type="button" name="btn" id="view" className="btn btn-info">Payment Status</button>

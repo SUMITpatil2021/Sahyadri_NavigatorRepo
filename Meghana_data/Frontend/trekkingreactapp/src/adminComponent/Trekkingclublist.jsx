@@ -20,8 +20,8 @@ const [plist,setplist]=useState([]);
          fetchdata()
     
       },[])
-     const deleteClub=(userid)=>{
-        AdminService.deleteClub(userid)
+     const deleteClub=(clubid)=>{
+        AdminService.deleteClub(clubid)
       .then((result)=>{
         console.log(result.data);
         fetchdata()
@@ -33,7 +33,6 @@ const [plist,setplist]=useState([]);
      const [isApproved, setIsApproved] = useState(false);
 
      const approveClub=(clubid)=>{
-        alert(clubid);
         AdminService.approveClub(clubid)
       .then((result)=>{
         console.log(result.data);
@@ -68,12 +67,6 @@ const [plist,setplist]=useState([]);
                     <td>{ob.emailid}</td>
                     <td>{ob.contact}</td>
                     <td>
-
-                      <Link to="edit">
-                      <button type="button" name="btn" id="edit" className="btn btn-primary">Edit</button>
-
-                      </Link>
-                        
                         
                       <button type="button" name="btn" id="approve" className="btn btn-info" onClick={() => approveClub(ob.clubid)} >
                                 {isApproved ? 'Approved' : 'Approve'}

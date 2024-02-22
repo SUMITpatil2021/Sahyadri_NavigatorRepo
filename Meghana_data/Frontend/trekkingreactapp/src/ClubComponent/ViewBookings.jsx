@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const ViewBookings = () => {
-  const [tlist,settlist]=useState([]);
+  const [tlist, settlist] = useState([]);
   const { trekkid } = useParams();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log(trekkid);
-       axios.get(`http://localhost:8080/getbookingdata/${trekkid}`)
+    axios.get(`http://localhost:8080/getbookingdata/${trekkid}`)
       .then((response) => {
         console.log(response.data)
         settlist([...response.data]);
-    })
+      })
       .catch(error => {
         console.error("Error fetching user data:", error);
       });
@@ -23,7 +25,7 @@ const ViewBookings = () => {
   return (
     <div className="container">
       <h2 className="mb-4">Total Bookings</h2>
-      <table className="table">
+      <table className="table border">
         <thead className="thead-light">
           <tr>
             <th>Trekker Name</th>
@@ -32,13 +34,18 @@ const ViewBookings = () => {
           </tr>
         </thead>
         <tbody>
-        {tlist.map((ob)=> <tr key={ob.trekkid}>
-                    <td>{ob.uname}</td>
-                    <td>{ob.noofpersons}</td>
-                    <td>{ob.totalcharges}</td>
-                    </tr>)}
+          {tlist.map((ob) => <tr key={ob.trekkid}>
+            <td>{ob.uname}</td>
+            <td>{ob.noofpersons}</td>
+            <td>{ob.totalcharges}</td>
+          </tr>)}
         </tbody>
       </table>
+      <div className=" mr-0">
+        <button type="button" className="btn btn-primary " onClick={() => navigate("/TrekkingClub")}>
+          BACK
+        </button>
+      </div>
     </div>
   );
 };

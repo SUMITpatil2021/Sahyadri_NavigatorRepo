@@ -1,6 +1,8 @@
+
 import React, { useReducer, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import validator from 'validator'
+import Swal from 'sweetalert2'
 import './style.css';
 
 export default function ClubRegistration() {
@@ -101,6 +103,8 @@ export default function ClubRegistration() {
             minLength: 8, minLowercase: 1, 
             minUppercase: 1, minNumbers: 1, minSymbols: 1 
         })) { 
+          valid = true;
+          error = "";
             setErrorMessage('') 
         } else { 
             setErrorMessage('Is Not Strong Password') 
@@ -117,8 +121,8 @@ export default function ClubRegistration() {
               }
             else {
               setMessage('');
-              valid = false;
-              error = "Invalid";
+              valid = true;
+              error = "";
             }
         break;
 
@@ -140,9 +144,17 @@ export default function ClubRegistration() {
     }
 
     dispatch({ type: "update", data: { name, value, touched: true, valid, error, formvalid } });
+    console.log(name,value,valid, error, formvalid );
   };
 
   const submitData = (e) => {
+
+    const currentDate = new Date().toISOString().split('T')[0]; // Get current date in yyyy-mm-dd format
+        if (user.EDate.value > currentDate) {
+            alert('Please select valid date.');
+            return;
+        }
+
     e.preventDefault();
     console.log(JSON.stringify(user));
     if(user==null){
@@ -173,7 +185,12 @@ export default function ClubRegistration() {
       .then((data) => {
         setRespo(data);
         if (data === "Club Registered") {
-          Navigate("/");
+          Swal.fire({
+            title: 'Trek',
+            text: "Registration done Successfully",
+            icon: 'success',
+          });
+          window.location.reload();
         }
         else if(data === "Already used"){
           setMessage("Username already used")
@@ -183,6 +200,7 @@ export default function ClubRegistration() {
         Navigate("/serverError");
       })
   };
+            
 
   return (
     <>
@@ -202,6 +220,7 @@ export default function ClubRegistration() {
         placeholder="eg. Gaganbhedi"
         className="form-control "
         value={user.Name.value}
+        required
         onChange={(e) => {
           handleChange("Name", e.target.value);
         }}
@@ -231,6 +250,7 @@ export default function ClubRegistration() {
         placeholder="eg. Supriya"
         className="form-control "
         value={user.OwnerName.value}
+        required
         onChange={(e) => {
           handleChange("OwnerName", e.target.value);
         }}
@@ -259,6 +279,7 @@ export default function ClubRegistration() {
         placeholder="eg. abc@gmail.com"
         className="form-control"
         value={user.Email.value}
+        required
         onChange={(e) => {
           handleChange("Email", e.target.value);
         }}
@@ -288,6 +309,7 @@ export default function ClubRegistration() {
         placeholder="eg.7447882097"
         className="form-control "
         value={user.PhoneNo.value}
+        required
         onChange={(e) => {
           handleChange("PhoneNo", e.target.value);
         }}
@@ -317,6 +339,7 @@ export default function ClubRegistration() {
         placeholder="eg.1111"
         className="form-control "
         value={user.LicenseNo.value}
+        required
         onChange={(e) => {
           handleChange("LicenseNo", e.target.value);
         }}
@@ -346,6 +369,7 @@ export default function ClubRegistration() {
         placeholder="eg.2-8-1997"
         className="form-control "
         value={user.EDate.value}
+        required
         onChange={(e) => {
           handleChange("EDate", e.target.value);
         }}
@@ -395,7 +419,7 @@ export default function ClubRegistration() {
       <label htmlFor="Password">Enter Password:</label>
       <pre> 
                 <input
-        type="text"
+        type="password"
         name="Password"
         id="Password"
         placeholder="eg. Supriya@123"
@@ -419,7 +443,8 @@ export default function ClubRegistration() {
 
         <div className="row mb-3 form-group mt-1">
           <div className="col mb-3">
-            <input type="button" value="Submit" className="btn btn-success mt-3 me-3 "
+            <input type="button" value="Submit" className={user.Name.valid && user.OwnerName.valid && user.PhoneNo.valid && user.LicenseNo.valid 
+            && user.Username.valid && user.Password.valid != false ?"btn btn-success":"btn btn-success disabled mt-3 me-3 "}
               onClick={(e) => { submitData(e) }} />
           </div>
               

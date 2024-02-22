@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Navigate, useNavigate } from 'react-router-dom';
+import LandingPage from '../component2/LandingPage';
 
 function ContactUs (){
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+
+  const Navigate = useNavigate();
+
+  const handleClick = () => {
+    window.location.reload();
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,7 +39,7 @@ function ContactUs (){
           <textarea id="message" value={message} onChange={(e) => setMessage(e.target.value)} className="form-control" required></textarea>
         </div>
 
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <button type="submit" className="btn btn-primary" onClick={handleClick}>Submit</button>
       </form>
     </div>
   );

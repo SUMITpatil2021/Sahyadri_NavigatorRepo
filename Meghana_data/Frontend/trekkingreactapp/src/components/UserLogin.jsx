@@ -179,13 +179,13 @@ const UserLogin = () => {
                 <Link to="/UserRegistration"> Signup</Link>
               </span>
             </div>
-            <div className="row">
+            {/* <div className="row">
               <div className="col">
                 <p className="text-end mt-2">
                   <Link to="/forgot">Forgot Password</Link> ?
                 </p>
               </div>
-            </div>
+            </div> */}
           </form>
         </div>
       </div>

@@ -46,7 +46,7 @@ const ViewEditProfile = () => {
         console.error("Error updating user data:", error);
       });
   };
-
+  
   const handleChange = (e) => {
     // Update user data in state as it changes
     const { name, value } = e.target;
@@ -58,6 +58,7 @@ const ViewEditProfile = () => {
 
   return (
     <>
+    
     <div className=" d-flex justify-content-center align-items-center vh-100 bg-secondary ">
   
       <div className=" ">

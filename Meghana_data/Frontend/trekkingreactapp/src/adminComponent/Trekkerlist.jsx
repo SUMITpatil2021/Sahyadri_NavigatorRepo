@@ -49,16 +49,8 @@ export default function Trekkerlist() {
                     <td>{ob.contact}</td>
                     <td>
 
-                        <Link to="edit">
-                            <button type="button" name="btn" id="edit" className="btn btn-primary">edit</button>&nbsp;&nbsp;&nbsp;
-
-                        </Link>
-
-                        <Link to="payment">
-                            <button type="button" name="btn" id="view" className="btn btn-info">Payment Status</button>
-                        </Link>
                         <Link>
-                        <button type="button" name="btn" id="delete" className="btn btn-danger" onClick={() => deleteUser(ob.userid)} >delete</button>&nbsp;&nbsp;&nbsp;
+                        <button type="button" name="btn" id="delete" className="btn btn-danger" onClick={() => deleteUser(ob.userid)} >delete</button>
                         </Link>
                     </td>
                 </tr>)}

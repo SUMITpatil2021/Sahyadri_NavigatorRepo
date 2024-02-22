@@ -1,6 +1,7 @@
 import React, { useReducer, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import validator from 'validator'
+import Swal from 'sweetalert2'
 
 export default function UserRegistration() {
   const Navigate = useNavigate();
@@ -76,6 +77,7 @@ export default function UserRegistration() {
             minLength: 8, minLowercase: 1, 
             minUppercase: 1, minNumbers: 1, minSymbols: 1 
         })) { 
+          valid = true;
             setErrorMessage('') 
         } else { 
             setErrorMessage('Is Not Strong Password') 
@@ -92,8 +94,8 @@ export default function UserRegistration() {
               }
             else {
               setMessage('');
-              valid = false;
-              error = "Invalid";
+              valid = true;
+              error = "";
             }
         break;
 
@@ -117,6 +119,8 @@ export default function UserRegistration() {
     }
 
     dispatch({ type: "update", data: { name, value, touched: true, valid, error, formvalid } });
+    console.log(name,value,valid, error, formvalid );
+
   };
 
   const submitData = (e) => {
@@ -144,7 +148,12 @@ export default function UserRegistration() {
       .then((data) => {
         setRespo(data);
         if (data === "User Registered") {
-          Navigate("/UserLogin");
+          Swal.fire({
+            title: 'Trek',
+            text: "Registration done Successfully",
+            icon: 'success',
+          });
+          window.location.reload();
         }
         else if(data === "Already used"){
           setMessage("Username already used")
@@ -153,6 +162,7 @@ export default function UserRegistration() {
         Navigate("/serverError");
       });
   };
+  
   return (
     <>
    
@@ -299,7 +309,8 @@ export default function UserRegistration() {
     </div>
         <div className="row mb-3 form-group mt-1">
           <div className="col mb-3">
-            <input type="button" value="Submit" className="btn btn-success mt-3 me-3 "
+            <input type="button" value="Submit" className={user.Name.valid && user.PhoneNo.valid && user.Email.valid &&  
+           user.Username.valid && user.Password.valid != false ?"btn btn-success":"btn btn-success disabled mt-3 me-3 "}
               onClick={(e) => { submitData(e) }} />
           </div>
 

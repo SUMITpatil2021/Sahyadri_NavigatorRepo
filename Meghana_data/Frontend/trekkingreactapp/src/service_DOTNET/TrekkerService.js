@@ -1,5 +1,5 @@
 import axios from 'axios';
-let baseUrl="https://localhost:7219/api/Bookedtrekk/"
+let baseUrl="https://localhost:7142/api/Bookedtrekk/"
 
 class TrekkerService{
     GetBookedtrekk(userid){

@@ -28,7 +28,7 @@ const TrekkDetailsList = () => {
         <div className="trekk-details-list mt-3">
             {trekkDetailsList.map(trekk => (
                 <Card key={trekk.trekkid} style={{ width: "20rem" }}>
-                <Card.Text>Club name: {trekk.location.trekkingpoint}</Card.Text>
+                <Card.Title>Club name: {trekk.clubid.name}</Card.Title>
 
                     <Card.Img variant="top" src={M1} alt={`Image for ${M1}`} />
                     <Card.Body className='mt-1'>

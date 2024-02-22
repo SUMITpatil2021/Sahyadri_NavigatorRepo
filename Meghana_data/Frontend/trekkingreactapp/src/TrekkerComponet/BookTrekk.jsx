@@ -29,7 +29,7 @@ function reducer(state, action) {
 };
 
 const uid = localStorage.getItem('userid');
-console.log(uid)
+console.log("uid"+uid);
 
 export default function BookTrekk() {
     const [state, dispatch] = useReducer(reducer, initialState);
@@ -81,14 +81,24 @@ export default function BookTrekk() {
         return date.toLocaleDateString(); // You can customize the date format as needed
     };
 
-    const handleClear = () => {
-        // Implement logic to clear the form fields
-        dispatch({
-            type: 'SET_BOOKTREK_DATA',
-            payload: initialState.trekData,
-        });
-    };
+    // const handleClear = () => {
+    //     // Implement logic to clear the form fields
+    //     dispatch({
+    //         type: 'SET_BOOKTREK_DATA',
+    //         payload: initialState.trekData,
+    //     });
+    // };
 
+    const handleClear = () => {
+            // Implement logic to clear the form fields
+           
+                Swal.fire({
+                    title: 'Trek',
+                    text: 'Payment done successfully',
+                    icon: 'success',
+                });
+           
+        };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -269,8 +279,8 @@ export default function BookTrekk() {
                         </div>
 
                         <div className="col-md-4 mt-3">
-                            <button type="button" className="btn btn-danger" onClick={handleClear}>
-                                Clear
+                            <button type="button" className="btn btn-primary" onClick={handleClear}>
+                                Make Payment
                             </button>
                         </div>
                     </form>

@@ -28,6 +28,7 @@ import Enquiry from './TrekkerComponet/Email';
 import ViewEditTrekker from './TrekkerComponet/ViewEditTrekker';
 import TrekkDetailsList from './TrekkerComponet/TrekkDetailsList';
 import BookTrekk from './TrekkerComponet/BookTrekk';
+import ViewBookings from './ClubComponent/ViewBookings';
 
 
 function App() {
@@ -41,10 +42,12 @@ function App() {
          <Route path='/Contactus' element={<ContactUs/>}/>
          <Route path='/UserLogin' element={<UserLogin/>}/>
 
+
          <Route path='/UserRegistration' element={<UserRegistration/>}/>
          <Route path='/ClubRegistration' element={<ClubRegistration/>}/>
          <Route path='/Admin' element={<AdminDashboard/>}/>
          
+
          <Route path='/Trekker' element={<TrekkerDashboard/>}/>
          <Route path='/ViewEditTrekker' element={<ViewEditTrekker/>}/>
          <Route path='/TrekkDetailsList' element={<TrekkDetailsList/>}/>
@@ -56,6 +59,7 @@ function App() {
          <Route path='/AddTrekk' element={<AddTrekk/>}/>
          <Route path='/ViewEditProfile' element={<ViewEditProfile/>}/>
          <Route path='/ListEmails' element={<ListEmails/>}/>
+         <Route path='/ViewBookings/:trekkid' element={<ViewBookings/>}/>
 
          
          <Route path='/ViewProfile' element={<ViewProfile/>}/> 

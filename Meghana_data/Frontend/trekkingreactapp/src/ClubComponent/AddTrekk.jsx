@@ -72,6 +72,21 @@ export default function AddTrekk() {
     const clubid = localStorage.getItem("clubid");
 
     const handleSubmit = (e) => {
+
+        // const requiredFields = ['trekkname', 'city', 'trekkingPoint', 'landmark', 'date', 'charges', 'guideName'];
+        // const isAnyFieldEmpty = requiredFields.some(field => !state.trekData[field]);
+    
+        // if (isAnyFieldEmpty) {
+        //     alert('Please fill out all required fields.');
+        //     return;
+        // }
+
+        const currentDate = new Date().toISOString().split('T')[0]; // Get current date in yyyy-mm-dd format
+        if (state.trekData.date < currentDate) {
+            alert('Please select a date that is not in the past.');
+            return;
+        }
+    
         e.preventDefault();
 
         const formData = new FormData();
@@ -111,7 +126,7 @@ export default function AddTrekk() {
                         icon: 'success',
                         
                       });
-                    return <TrekkingClub/>
+                    Navigate("/TrekkingClub")
                 }
                 
                 else
@@ -137,7 +152,7 @@ export default function AddTrekk() {
                                     className="form-control"
                                     id="trekkname"
                                     name="trekkname"
-                                    required
+                                    required='true'
                                     value={state.trekData.trekkname}
                                     onChange={(e) => dispatch({ type: 'SET_TREK_DATA', payload: { trekkname: e.target.value } })}
                                 />

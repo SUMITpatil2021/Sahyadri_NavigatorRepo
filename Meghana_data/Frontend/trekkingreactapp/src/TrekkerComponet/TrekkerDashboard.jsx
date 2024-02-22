@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react';
 import TrekkDetailsList from '../TrekkerComponet/TrekkDetailsList';
 import TrekkerImg from './trekkerImg';
 import BookTrekk from './BookTrekk';
+import MyTrekk from './mytrekk';
 
 
 export default function TrekkerDashboard() {
@@ -35,7 +36,7 @@ export default function TrekkerDashboard() {
             case "trekimg":
                 return <TrekkerImg/>
             case "ViewMyTrekk":
-                return <ViewMyTrekk/>
+                return <MyTrekk/>
             case "Enquiry": 
               return <Enquiry/>
             case "ViewEditTrekker":
@@ -56,7 +57,8 @@ export default function TrekkerDashboard() {
                         <Nav className="ml-auto">
                         <Nav.Link  onClick={()=>{handleLinkClick('TrekkDetailsList')}}>Upcoming Trekks</Nav.Link>
                         <Nav.Link  onClick={()=>{handleLinkClick('ViewMyTrekk')}}>My Trekks</Nav.Link>
-                        <Nav.Link  onClick={()=>{handleLinkClick('Enquiry')}}>Enquiry</Nav.Link>
+                        <Nav.Link  onClick={()=>{handleLinkClick('Enquiry')}}>Enquiry</Nav.Link>    
+                        <Nav.Link href="#" style={{color:"white"}} disabled > {""}  Hello! {localStorage.getItem("myData")} <span>&#128512;</span> </Nav.Link>
                         </Nav>
                         </Navbar.Collapse>
                   
@@ -65,7 +67,7 @@ export default function TrekkerDashboard() {
                                     <Nav>
                                         <NavDropdown
                                             id="nav-dropdown-primary-example"
-                                            title={<span style={{ color: 'white' }}>My Profile</span>}
+                                            title={<span style={{ color: 'white' }}> <i class='fas fa-user'></i> My Profile</span>}
                                             menuVariant="light">
                                             <NavDropdown.Item onClick={()=>{handleLinkClick('ViewEditTrekker')}}>Your profile</NavDropdown.Item>
                                             <NavDropdown.Item onClick={()=>{Navigate('/')}}>Logout</NavDropdown.Item>
